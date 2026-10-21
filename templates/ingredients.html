@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Thành phần{% endblock %}
+{% block content %}
+{% set h = c.ingredients.hero %}
+<section class="page-hero text-white" style="background-image: url('{{ h.image }}');">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <p class="eyebrow">{{ h.eyebrow }}</p>
+        <h1 class="display-4 font-serif">{{ h.title }}</h1>
+        <p class="lead">{{ h.lead }}</p>
+    </div>
+</section>
+
+<section class="py-6">
+    <div class="container">
+        <div class="row g-4">
+            {% for it in c.ingredients['items'] %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-organic h-100">
+                    <div class="card-img-wrap">
+                        <img src="{{ it.image }}" class="card-img-top" alt="{{ it.name }}">
+                    </div>
+                    <div class="card-body p-4">
+                        <h3 class="h4 card-title font-serif">{{ it.name }}</h3>
+                        <p class="latin-tag mb-1">{{ it.latin }}</p>
+                        <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i>{{ it.origin }}</p>
+                        <p class="text-muted small">{{ it.desc }}</p>
+                        <ul class="benefit-list list-unstyled small">
+                            {% for b in it.benefits %}
+                            <li><i class="bi bi-check2-circle me-1"></i>{{ b }}</li>
+                            {% endfor %}
+                        </ul>
+                        <blockquote class="brand-quote small mt-3 mb-0">{{ it.quote }}</blockquote>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="alert alert-light border rounded-4 mt-6">
+            <h3 class="h6 font-serif text-gold">{{ c.ingredients.notice.title }}</h3>
+            <p class="small text-muted mb-0">{{ c.ingredients.notice.text }}</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

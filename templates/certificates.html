@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Chứng nhận{% endblock %}
+{% block content %}
+{% set h = c.certificates.hero %}
+<section class="page-hero text-white" style="background-image: url('{{ h.image }}');">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <p class="eyebrow">{{ h.eyebrow }}</p>
+        <h1 class="display-4 font-serif">{{ h.title }}</h1>
+        <p class="lead">{{ h.lead }}</p>
+    </div>
+</section>
+
+<section class="py-6">
+    <div class="container">
+        <div class="row g-4">
+            {% for it in c.certificates['items'] %}
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="cert-item h-100">
+                    <div class="cert-thumb position-relative">
+                        <img src="{{ it.image }}" alt="{{ it.title }}">
+                        <button type="button" class="cert-zoom btn" data-bs-toggle="modal" data-bs-target="#certModal"
+                                data-src="{{ it.image }}" data-title="{{ it.title }}">
+                            <i class="bi bi-zoom-in"></i>
+                        </button>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="h6 font-serif mb-1">{{ it.title }}</h3>
+                        <small class="text-muted d-block">{{ it.issuer }}</small>
+                        <small class="text-gold">{{ it.year }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-6 bg-organic-soft">
+    <div class="container" style="max-width: 860px;">
+        <div class="text-center mb-5">
+            <p class="eyebrow">{{ c.certificates.faq.eyebrow }}</p>
+            <h2 class="section-title font-serif">{{ c.certificates.faq.title }}</h2>
+        </div>
+        <div class="accordion accordion-organic" id="faqAccordion">
+            {% for f in c.certificates.faq_items %}
+            <div class="accordion-item rounded-4 mb-3 overflow-hidden">
+                <h3 class="accordion-header">
+                    <button class="accordion-button {% if not loop.first %}collapsed{% endif %}" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#faq{{ loop.index }}">
+                        {{ f.q }}
+                    </button>
+                </h3>
+                <div id="faq{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}"
+                     data-bs-parent="#faqAccordion">
+                    <div class="accordion-body text-muted">{{ f.a }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="certModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header border-0">
+                <h5 class="modal-title font-serif" id="certModalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body text-center pt-0">
+                <img id="certModalImg" src="" class="img-fluid rounded-3" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

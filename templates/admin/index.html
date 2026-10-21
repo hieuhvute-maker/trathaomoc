@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% block title %}Tổng quan{% endblock %}
+{% block content %}
+<h1 class="h3 mb-3">Chọn trang cần chỉnh sửa</h1>
+<p class="text-muted">Nội dung được lưu tại <code>data/content.json</code>, ảnh tải lên lưu tại <code>data/images/</code>.</p>
+<div class="row g-3">
+    {% for p in pages %}
+    <div class="col-sm-6 col-lg-4">
+        <a class="card h-100 text-decoration-none shadow-sm border-0 rounded-4" href="{{ url_for('admin_page', page_key=p.key) }}">
+            <div class="card-body">
+                <h2 class="h5 text-success mb-0"><i class="bi bi-pencil-square me-2"></i>{{ p.label }}</h2>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

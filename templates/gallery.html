@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Thư viện ảnh{% endblock %}
+{% block content %}
+{% set h = c.gallery.hero %}
+{% set categories = c.gallery['items']|map(attribute='category')|unique|list %}
+<section class="page-hero text-white" style="background-image: url('{{ h.image }}');">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <p class="eyebrow">{{ h.eyebrow }}</p>
+        <h1 class="display-4 font-serif">{{ h.title }}</h1>
+        <p class="lead">{{ h.lead }}</p>
+    </div>
+</section>
+
+<section class="py-6">
+    <div class="container">
+        <div class="gallery-filters d-flex flex-wrap justify-content-center gap-2 mb-5">
+            <button type="button" class="btn btn-filter active rounded-pill" data-filter="all">Tất cả</button>
+            {% for cat in categories %}
+            <button type="button" class="btn btn-filter rounded-pill" data-filter="{{ cat }}">{{ cat }}</button>
+            {% endfor %}
+        </div>
+        <div class="row g-4">
+            {% for it in c.gallery['items'] %}
+            <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="{{ it.category }}">
+                <a href="#" class="gallery-link d-block position-relative rounded-4 overflow-hidden"
+                   data-bs-toggle="modal" data-bs-target="#galleryModal"
+                   data-src="{{ it.src }}" data-caption="{{ it.caption }}">
+                    <img src="{{ it.src }}" class="img-fluid w-100" alt="{{ it.caption }}">
+                    <span class="gallery-caption">{{ it.caption }}</span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-body p-0">
+                <img id="galleryModalImg" src="" class="img-fluid rounded-4 w-100" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

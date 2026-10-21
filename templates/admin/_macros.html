@@ -1,0 +1,46 @@
+{% macro render_field(f, key, value) -%}
+<div class="mb-3">
+    <label class="form-label fw-semibold">{{ f.label }}</label>
+    {% if f.type == 'text' %}
+        <input class="form-control" name="{{ key }}" value="{{ value or '' }}">
+    {% elif f.type == 'textarea' %}
+        <textarea class="form-control" name="{{ key }}" rows="{{ f.rows }}">{{ value or '' }}</textarea>
+    {% elif f.type == 'lines' %}
+        <textarea class="form-control" name="{{ key }}" rows="5">{{ (value or [])|join('\n') }}</textarea>
+        <div class="form-text">Mỗi dòng là một mục.</div>
+    {% elif f.type == 'image' %}
+        <div class="row g-3 align-items-start">
+            <div class="col-md-4">
+                {% if value %}
+                <img src="{{ value }}" class="img-thumbnail admin-preview" alt="Xem trước">
+                {% else %}
+                <div class="border rounded p-3 text-muted small text-center">Chưa có ảnh</div>
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <input class="form-control mb-2" name="{{ key }}" value="{{ value or '' }}" placeholder="Dán URL ảnh (https://...) hoặc để trống khi tải file">
+                <input type="file" class="form-control" name="{{ key }}|file" accept="image/jpeg,image/png,image/webp,image/gif">
+                <div class="form-text">📐 {{ f.help }}</div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro render_fields(fields, prefix, data) -%}
+    {% for f in fields %}
+        {{ render_field(f, prefix ~ f.name, data[f.name]) }}
+    {% endfor %}
+{%- endmacro %}
+
+{% macro render_row(section, prefix, item) -%}
+<div class="card row-card shadow-sm mb-3">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <strong class="text-success">Mục</strong>
+            <button type="button" class="btn btn-sm btn-outline-danger" data-remove-row><i class="bi bi-trash"></i> Xóa mục</button>
+        </div>
+        {{ render_fields(section.fields, prefix, item) }}
+    </div>
+</div>
+{%- endmacro %}

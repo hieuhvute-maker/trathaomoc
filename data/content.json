@@ -1,0 +1,388 @@
+{
+  "site": {
+    "general": {
+      "brand": "Trà thảo mộc Bách Phục",
+      "slogan": "Mang hơi thở thanh lành của núi rừng vào từng nhịp sống hiện đại",
+      "footer_about": "Thảo dược từ núi cao, chế biến sạch, giữ trọn tinh túy thiên nhiên trong từng tách trà."
+    },
+    "contact": {
+      "hotline": "1900 6868",
+      "email": "contact@bachphuc.vn",
+      "address": "Thôn Bản Cao, xã Tả Van, huyện Sa Pa, tỉnh Lào Cai",
+      "hours": "Thứ 2 - Thứ 7: 08:00 - 17:30"
+    },
+    "badges": [
+      {
+        "name": "ISO 22000",
+        "desc": "Quản lý an toàn thực phẩm"
+      },
+      {
+        "name": "HACCP",
+        "desc": "Kiểm soát mối nguy trọng yếu"
+      },
+      {
+        "name": "OCOP",
+        "desc": "Sản phẩm nông thôn tiêu biểu"
+      },
+      {
+        "name": "0% Chất bảo quản",
+        "desc": "Không hương liệu nhân tạo"
+      }
+    ]
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Thảo dược đại ngàn miền Trung · Tinh khiết tự nhiên",
+      "lead": "Từ những triền núi sương phủ miền Trung, mỗi búp thảo mộc được băng rừng tìm kiếm, chế biến thủ công và gửi trọn hương vị đại ngàn đến bạn.",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80",
+      "btn1": "Khám phá sản phẩm",
+      "btn2": "Câu chuyện của chúng tôi"
+    },
+    "story": {
+      "eyebrow": "Hành trình thảo mộc",
+      "title": "Từ rừng sâu miền Trung đến tách trà trên bàn làm việc của bạn",
+      "p1": "Có những cây thuốc chỉ mọc nơi đại ngàn đã qua nhiều mùa mưa nắng. Người đồng bào vùng cao vẫn nhớ từng gốc cây, từng mùa thu hái, như cách họ nhớ đường về nhà.",
+      "p2": "Bách Phục bắt đầu từ chính những câu chuyện ấy. Chúng tôi đi cùng người dân tộc thiểu số miền Trung để đưa dược liệu quý từ rừng về, giữ nguyên tinh túy và đưa đến từng ấm trà của bạn.",
+      "quote": "Mang hơi thở thanh lành của núi rừng vào từng nhịp sống hiện đại.",
+      "link_text": "Đọc hành trình của chúng tôi",
+      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80",
+      "badge_num": "100%",
+      "badge_label": "Thảo mộc tự nhiên"
+    },
+    "values": {
+      "eyebrow": "Giá trị cốt lõi",
+      "title": "Điều chúng tôi cam kết"
+    },
+    "value_items": [
+      {
+        "icon": "bi-tree",
+        "title": "Đại ngàn nguyên bản",
+        "desc": "Dược liệu được thu hái từ rừng sâu và triền núi đá miền Trung, không trồng ép."
+      },
+      {
+        "icon": "bi-shield-check",
+        "title": "Khắt khe từng khâu",
+        "desc": "Kiểm nghiệm đạt chuẩn vệ sinh an toàn thực phẩm, 100% không chất bảo quản."
+      },
+      {
+        "icon": "bi-cup-hot",
+        "title": "Thủ công kết hợp hiện đại",
+        "desc": "Sấy lạnh giữ dược tính, sao trà thủ công tạo hương vị đậm đà."
+      },
+      {
+        "icon": "bi-people",
+        "title": "Đồng hành cùng bản làng",
+        "desc": "Tạo sinh kế bền vững cho người đồng bào, bảo tồn tri thức cây thuốc nam."
+      }
+    ],
+    "stats": [
+      {
+        "num": "15+",
+        "label": "Năm kinh nghiệm"
+      },
+      {
+        "num": "20+",
+        "label": "Loại thảo mộc"
+      },
+      {
+        "num": "5.000+",
+        "label": "Khách hàng tin dùng"
+      },
+      {
+        "num": "100%",
+        "label": "Kiểm nghiệm đạt chuẩn"
+      }
+    ],
+    "featured": {
+      "eyebrow": "Nổi bật",
+      "title": "Dược liệu quý của đại ngàn",
+      "button": "Xem tất cả thảo mộc"
+    },
+    "cta": {
+      "title": "Hương vị của đại ngàn, trong từng tách trà",
+      "desc": "Mỗi tách trà là một lời mời trở về với thiên nhiên và với những người đã giữ rừng xanh suốt bao đời.",
+      "button": "Liên hệ ngay"
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Về chúng tôi",
+      "title": "Nguồn gốc từ núi cao",
+      "lead": "Hành trình từ đỉnh núi sương mờ đến chén trà thơm ngon.",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80"
+    },
+    "origin": {
+      "eyebrow": "Nguồn gốc",
+      "title": "Vùng đất của dược liệu quý",
+      "sub1_title": "Khí hậu và đất rừng nuôi dưỡng dược tính",
+      "sub1_text": "Những triền núi miền Trung có sương sớm, nắng dịu và đất rừng giàu khoáng chất. Thảo mộc ở đây sinh trưởng chậm, tích lũy trọn vẹn tinh dầu và dưỡng chất.",
+      "sub2_title": "Người giữ rừng là người giữ tri thức",
+      "sub2_text": "Chúng tôi làm việc cùng các hộ dân tộc thiểu số, lắng nghe kinh nghiệm thu hái và cách chăm rừng của họ. Mỗi cây thuốc được lấy có chừng mực, để rừng luôn xanh cho mùa sau.",
+      "quote": "Rừng cho ta cây thuốc, ta giữ rừng để con cháu còn có cây thuốc.",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=80"
+    },
+    "process": {
+      "eyebrow": "Quy trình",
+      "title": "Từ thu hái đến đóng gói"
+    },
+    "steps": [
+      {
+        "title": "Thu hái",
+        "desc": "Chọn lọc thời điểm thu hái phù hợp, thủ công để tránh dập nát."
+      },
+      {
+        "title": "Sơ chế",
+        "desc": "Rửa sạch bằng nước suối, loại bỏ tạp chất và phân loại kỹ lưỡng."
+      },
+      {
+        "title": "Phơi sấy",
+        "desc": "Sấy ở nhiệt độ thấp, kiểm soát chặt chẽ để giữ hương và dưỡng chất."
+      },
+      {
+        "title": "Đóng gói",
+        "desc": "Đóng gói trong môi trường sạch, bảo quản kín để giữ độ tươi."
+      }
+    ],
+    "commitment": {
+      "eyebrow": "Cam kết",
+      "title": "Sạch từ gốc đến ngọn",
+      "sub_title": "Minh bạch từng lô sản phẩm",
+      "checklist": [
+        "Vùng trồng được kiểm soát và ghi nhận nhật ký canh tác.",
+        "Không chất bảo quản, không phẩm màu nhân tạo.",
+        "Kiểm nghiệm định kỳ tại đơn vị được cấp phép.",
+        "Truy xuất nguồn gốc theo từng lô sản phẩm."
+      ],
+      "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=1200&q=80"
+    },
+    "sustainability": {
+      "eyebrow": "Phát triển bền vững",
+      "title": "Giữ rừng, nuôi người"
+    },
+    "sustain_items": [
+      {
+        "icon": "bi-house-heart",
+        "title": "Việc làm cho người đồng bào",
+        "desc": "Hợp tác trực tiếp với hộ dân tộc thiểu số miền Trung, tạo thu nhập ổn định ngay tại làng."
+      },
+      {
+        "icon": "bi-flower1",
+        "title": "Sinh kế bền vững",
+        "desc": "Chỉ thu hái theo mùa, để lại đủ cây non để rừng tự tái sinh và phục hồi."
+      },
+      {
+        "icon": "bi-book",
+        "title": "Bảo tồn tri thức bản địa",
+        "desc": "Ghi chép và lưu giữ kinh nghiệm dùng cây thuốc nam của các thế hệ người dân vùng cao."
+      }
+    ]
+  },
+  "ingredients": {
+    "hero": {
+      "eyebrow": "Thành phần & Sản phẩm",
+      "title": "Thảo mộc của núi rừng",
+      "lead": "Mỗi loại thảo mộc mang một công dụng riêng cho sức khỏe.",
+      "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80"
+    },
+    "items": [
+      {
+        "name": "Nấm Linh Chi Rừng",
+        "latin": "Ganoderma lucidum",
+        "origin": "Rừng nguyên sinh miền Trung",
+        "image": "https://images.unsplash.com/photo-1606914469633-bd39206ea739?auto=format&fit=crop&w=800&q=80",
+        "desc": "Được mệnh danh là 'nấm của bậc trường thọ', linh chi rừng sinh trưởng chậm trên thân cây mục giữa đại ngàn, tích tụ triterpenoid và polysaccharide. Theo y học cổ truyền, nấm có tính bình, vị ngọt, quy kinh tâm, can, phế.",
+        "benefits": [
+          "Tăng cường sức đề kháng",
+          "Hỗ trợ giấc ngủ, giảm căng thẳng",
+          "Chống oxy hóa, thanh lọc cơ thể"
+        ],
+        "quote": "Chậm rãi như núi rừng, bền bỉ như thời gian."
+      },
+      {
+        "name": "Hà Thủ Đỏ",
+        "latin": "Polygonum multiflorum",
+        "origin": "Triền núi đá vôi miền Trung",
+        "image": "https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?auto=format&fit=crop&w=800&q=80",
+        "desc": "Củ hà thủ đỏ là vị thuốc quý của y học dân gian, được dùng để bồi bổ khí huyết, nuôi dưỡng sức khỏe gan thận và giúp cơ thể tràn đầy sinh lực sau những ngày mệt mỏi.",
+        "benefits": [
+          "Bồi bổ khí huyết",
+          "Hỗ trợ chức năng gan thận",
+          "Nuôi dưỡng sức khỏe bền lâu"
+        ],
+        "quote": "Ẩn mình dưới lòng đất, nuôi dưỡng cả một đời người."
+      },
+      {
+        "name": "Sâm Dây",
+        "latin": "Tetrastigma hemsleyanum",
+        "origin": "Rừng già vùng cao",
+        "image": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80",
+        "desc": "Sâm dây mọc hoang trên các triền núi đá, vị đắng dịu, hậu ngọt, giàu flavonoid tự nhiên. Được dùng để thanh nhiệt, giải độc và hỗ trợ tăng cường thể trạng.",
+        "benefits": [
+          "Thanh nhiệt, giải độc",
+          "Hỗ trợ tăng cường thể trạng",
+          "Giàu flavonoid tự nhiên"
+        ],
+        "quote": "Vị đắng đầu môi, hậu ngọt nơi cuống họng."
+      },
+      {
+        "name": "Cúc Hoa Núi",
+        "latin": "Chrysanthemum indicum",
+        "origin": "Sườn đồi sương mù",
+        "image": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80",
+        "desc": "Cúc hoa núi nở vàng trên sườn đồi sương phủ, hương thơm dịu nhẹ, tính mát. Trà cúc giúp giải nhiệt, thanh lọc gan và mang đến cảm giác thư thái cho tinh thần.",
+        "benefits": [
+          "Giải nhiệt, thanh mát",
+          "Hỗ trợ thanh lọc gan",
+          "Giúp thư thái tinh thần"
+        ],
+        "quote": "Một đóa hoa núi, một buổi chiều bình yên."
+      },
+      {
+        "name": "Cam Thảo Núi",
+        "latin": "Glycyrrhiza glabra",
+        "origin": "Đồi núi khô ráo miền Trung",
+        "image": "https://images.unsplash.com/photo-1515586838455-8f8f940d6853?auto=format&fit=crop&w=800&q=80",
+        "desc": "Rễ cam thảo mọc hoang trên đồi núi, vị ngọt tự nhiên, êm dịu. Cam thảo giúp làm dịu cổ họng, hỗ trợ tiêu hóa và hài hòa hương vị cho từng ấm trà.",
+        "benefits": [
+          "Làm dịu cổ họng",
+          "Hỗ trợ tiêu hóa",
+          "Vị ngọt tự nhiên, không đường"
+        ],
+        "quote": "Ngọt từ đất, lành từ rễ."
+      },
+      {
+        "name": "Đinh Lăng Rừng",
+        "latin": "Polyscias fruticosa",
+        "origin": "Đại ngàn Trường Sơn",
+        "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80",
+        "desc": "Đinh lăng là vị thuốc quen thuộc của núi rừng, hỗ trợ tăng cường sinh lực, giảm mệt mỏi và giúp cơ thể ăn ngon, ngủ sâu hơn trong nhịp sống bận rộn.",
+        "benefits": [
+          "Tăng cường sinh lực",
+          "Giảm mệt mỏi",
+          "Hỗ trợ ăn ngon, ngủ sâu"
+        ],
+        "quote": "Lá xanh của đại ngàn, nhịp sống bình thản của hôm nay."
+      }
+    ],
+    "notice": {
+      "eyebrow": "Lưu ý",
+      "title": "Thông tin mang tính tham khảo",
+      "text": "Công dụng được nêu mang tính tham khảo dân gian và không thay thế cho chẩn đoán, điều trị của bác sĩ. Vui lòng tham khảo ý kiến chuyên gia y tế trước khi sử dụng, đặc biệt với phụ nữ có thai, người đang điều trị bệnh."
+    }
+  },
+  "certificates": {
+    "hero": {
+      "eyebrow": "Chứng nhận & Công bố",
+      "title": "Minh bạch về chất lượng",
+      "lead": "Giấy chứng nhận, kết quả kiểm nghiệm và hồ sơ công bố sản phẩm.",
+      "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80"
+    },
+    "items": [
+      {
+        "title": "Giấy chứng nhận VietGAP dược liệu",
+        "issuer": "Cục Trồng trọt và Bảo vệ thực vật",
+        "year": "2024",
+        "image": "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "title": "Kết quả kiểm nghiệm vi sinh",
+        "issuer": "Trung tâm Kiểm nghiệm An toàn thực phẩm",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "title": "Kết quả kiểm nghiệm kim loại nặng",
+        "issuer": "Viện Kiểm nghiệm An toàn vệ sinh thực phẩm",
+        "year": "2025",
+        "image": "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "title": "Bản công bố sản phẩm",
+        "issuer": "Bộ Y tế",
+        "year": "2024",
+        "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80"
+      }
+    ],
+    "faq": {
+      "eyebrow": "Hỏi đáp",
+      "title": "Câu hỏi thường gặp"
+    },
+    "faq_items": [
+      {
+        "q": "Sản phẩm có đạt tiêu chuẩn an toàn thực phẩm không?",
+        "a": "Toàn bộ sản phẩm được kiểm nghiệm định kỳ tại đơn vị được cấp phép, đáp ứng quy chuẩn an toàn thực phẩm hiện hành."
+      },
+      {
+        "q": "Hồ sơ công bố sản phẩm có thể xem ở đâu?",
+        "a": "Quý khách có thể yêu cầu bản sao hồ sơ công bố qua mục Liên hệ trên website."
+      },
+      {
+        "q": "Nguồn dược liệu có được truy xuất nguồn gốc?",
+        "a": "Mỗi lô dược liệu đều có mã truy xuất, ghi nhận vùng trồng, thời điểm thu hái và quy trình sơ chế."
+      }
+    ]
+  },
+  "gallery": {
+    "hero": {
+      "eyebrow": "Thư viện ảnh",
+      "title": "Khoảnh khắc từ núi rừng",
+      "lead": "Thiên nhiên, vùng trồng, quy trình và sản phẩm của chúng tôi.",
+      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1920&q=80"
+    },
+    "items": [
+      {
+        "src": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Sương mù vờn đỉnh núi miền Trung",
+        "category": "Thiên nhiên"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Băng rừng tìm dược liệu",
+        "category": "Thiên nhiên"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Bình minh trên đại ngàn",
+        "category": "Thiên nhiên"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Vùng trồng dược liệu tự nhiên",
+        "category": "Vùng trồng"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Thu hái thuận theo tự nhiên",
+        "category": "Quy trình"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Sấy lạnh giữ trọn dược tính",
+        "category": "Quy trình"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Đóng gói trong môi trường sạch",
+        "category": "Đóng gói"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?auto=format&fit=crop&w=1400&q=80",
+        "caption": "Ấm trà thảo mộc đậm đà hương núi",
+        "category": "Sản phẩm"
+      }
+    ]
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Liên hệ",
+      "title": "Kết nối cùng chúng tôi",
+      "lead": "Chúng tôi luôn sẵn lòng lắng nghe và hỗ trợ bạn.",
+      "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1920&q=80"
+    },
+    "page": {
+      "form_title": "Gửi tin nhắn cho chúng tôi",
+      "info_title": "Thông tin liên hệ",
+      "map_image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+{% from "admin/_macros.html" import render_field, render_fields, render_row %}
+{% block title %}{{ page.label }}{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">{{ page.label }}</h1>
+</div>
+
+<form method="post" enctype="multipart/form-data" action="{{ url_for('admin_page', page_key=page.key) }}">
+    {% for section in page.sections %}
+    <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card-header bg-white fw-bold">{{ section.title }}</div>
+        <div class="card-body">
+            {% if section.type == 'scalar' %}
+                {{ render_fields(section.fields, section.id ~ '|', data[section.id]) }}
+            {% else %}
+                <div data-list="{{ section.id }}">
+                    {% for item in data[section.id] %}
+                        {{ render_row(section, section.id ~ '|' ~ loop.index0 ~ '|', item) }}
+                    {% endfor %}
+                </div>
+                <button type="button" class="btn btn-outline-success btn-sm" data-add-row="{{ section.id }}">
+                    <i class="bi bi-plus-circle"></i> Thêm mục
+                </button>
+                <template id="tpl-{{ section.id }}">
+                    {{ render_row(section, section.id ~ '|__IDX__|', {}) }}
+                </template>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="sticky-bottom bg-white border rounded-4 p-3 d-flex justify-content-end gap-2 shadow-sm">
+        <button type="submit" class="btn btn-success px-4"><i class="bi bi-save"></i> Lưu thay đổi</button>
+    </div>
+</form>
+{% endblock %}

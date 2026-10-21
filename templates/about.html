@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Về chúng tôi{% endblock %}
+{% block content %}
+{% set h = c.about.hero %}
+<section class="page-hero text-white" style="background-image: url('{{ h.image }}');">
+    <div class="hero-overlay"></div>
+    <div class="container position-relative">
+        <p class="eyebrow">{{ h.eyebrow }}</p>
+        <h1 class="display-4 font-serif">{{ h.title }}</h1>
+        <p class="lead">{{ h.lead }}</p>
+    </div>
+</section>
+
+{% set o = c.about.origin %}
+<section class="py-6">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <p class="eyebrow">{{ o.eyebrow }}</p>
+                <h2 class="section-title font-serif mb-4">{{ o.title }}</h2>
+                <h3 class="h5 font-serif text-gold">{{ o.sub1_title }}</h3>
+                <p class="text-muted">{{ o.sub1_text }}</p>
+                <h3 class="h5 font-serif text-gold">{{ o.sub2_title }}</h3>
+                <p class="text-muted">{{ o.sub2_text }}</p>
+                <blockquote class="brand-quote my-4">{{ o.quote }}</blockquote>
+            </div>
+            <div class="col-lg-6">
+                <img src="{{ o.image }}" class="img-fluid rounded-4 shadow-soft w-100" alt="{{ o.title }}">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-6 bg-organic-soft">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="eyebrow">{{ c.about.process.eyebrow }}</p>
+            <h2 class="section-title font-serif">{{ c.about.process.title }}</h2>
+        </div>
+        <div class="row g-4">
+            {% for step in c.about.steps %}
+            <div class="col-md-6 col-lg-3">
+                <div class="process-step h-100 p-4 shadow-soft">
+                    <div class="step-num mb-3">{{ "%02d"|format(loop.index) }}</div>
+                    <h3 class="h5 font-serif">{{ step.title }}</h3>
+                    <p class="text-muted small mb-0">{{ step.desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% set cm = c.about.commitment %}
+<section class="py-6">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="{{ cm.image }}" class="img-fluid rounded-4 shadow-soft w-100" alt="{{ cm.title }}">
+            </div>
+            <div class="col-lg-6">
+                <p class="eyebrow">{{ cm.eyebrow }}</p>
+                <h2 class="section-title font-serif mb-3">{{ cm.title }}</h2>
+                <h3 class="h5 font-serif text-gold mb-3">{{ cm.sub_title }}</h3>
+                <ul class="checklist list-unstyled">
+                    {% for item in cm.checklist %}
+                    <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-6 bg-organic-soft">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="eyebrow">{{ c.about.sustainability.eyebrow }}</p>
+            <h2 class="section-title font-serif">{{ c.about.sustainability.title }}</h2>
+        </div>
+        <div class="row g-4">
+            {% for it in c.about.sustain_items %}
+            <div class="col-md-4">
+                <div class="value-card h-100 p-4 shadow-soft">
+                    <div class="icon-circle mb-3"><i class="bi {{ it.icon }}"></i></div>
+                    <h3 class="h5 font-serif">{{ it.title }}</h3>
+                    <p class="text-muted small mb-0">{{ it.desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
