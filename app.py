@@ -11,7 +11,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+DATA_DIR = os.environ.get("DATA_DIR", os.path.join(BASE_DIR, "data"))
 IMAGE_DIR = os.path.join(DATA_DIR, "images")
 CONTENT_FILE = os.path.join(DATA_DIR, "content.json")
 ADMIN_FILE = os.path.join(DATA_DIR, "admin.json")
@@ -22,7 +22,7 @@ DEFAULT_ADMIN_USER = "admin"
 DEFAULT_ADMIN_PASSWORD = "123admin"
 
 app = Flask(__name__)
-app.secret_key = "trathaomoc-bachphuc-secret"
+app.secret_key = os.environ.get("SECRET_KEY", "trathaomoc-bachphuc-secret")
 app.config["MAX_CONTENT_LENGTH"] = 40 * 1024 * 1024
 
 BRAND = "Trà thảo mộc Bách Phục"
