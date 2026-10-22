@@ -13,10 +13,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.environ.get("DATA_DIR", os.path.join(BASE_DIR, "data"))
 IMAGE_DIR = os.path.join(DATA_DIR, "images")
-CONTENT_FILE = os.path.join(DATA_DIR, "content.json")
-ADMIN_FILE = os.path.join(DATA_DIR, "admin.json")
+# Đặt GCS_BUCKET để lưu dữ liệu và ảnh lên Google Cloud Storage (ổ đĩa local trên Cloud Run/VM không bền).
+GCS_BUCKET = os.environ.get("GCS_BUCKET", "dataforgit").strip()
+_gcs_bucket = None
 
-ALLOWED_IMAGE_EXT = {"jpg", "jpeg", "png", "webp", "gif"}
+ALLOWED_IMAGE_EXT = {"jpg", "jpeg", "png", "webp", "gif", "avif"}
 MAX_IMAGE_BYTES = 5 * 1024 * 1024
 DEFAULT_ADMIN_USER = "admin"
 DEFAULT_ADMIN_PASSWORD = "123admin"
@@ -446,13 +447,33 @@ DEFAULT_CONTENT = {
 }
 
 
-def save_json(path, data):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+def gcs():
+    global _gcs_bucket
+    if _gcs_bucket is None:
+        from google.cloud import storage
+        _gcs_bucket = storage.Client().bucket(GCS_BUCKET)
+    return _gcs_bucket
 
 
-def load_json(path):
-    with open(path, encoding="utf-8") as f:
+def data_exists(name):
+    if GCS_BUCKET:
+        return gcs().blob(f"data/{name}").exists()
+    return os.path.exists(os.path.join(DATA_DIR, name))
+
+
+def save_json(name, data):
+    text = json.dumps(data, ensure_ascii=False, indent=2)
+    if GCS_BUCKET:
+        gcs().blob(f"data/{name}").upload_from_string(text, content_type="application/json")
+        return
+    with open(os.path.join(DATA_DIR, name), "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def load_json(name):
+    if GCS_BUCKET:
+        return json.loads(gcs().blob(f"data/{name}").download_as_text(encoding="utf-8"))
+    with open(os.path.join(DATA_DIR, name), encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -464,24 +485,25 @@ def merge_defaults(default, data):
 
 
 def ensure_data():
-    os.makedirs(IMAGE_DIR, exist_ok=True)
-    if not os.path.exists(CONTENT_FILE):
-        save_json(CONTENT_FILE, DEFAULT_CONTENT)
-    if not os.path.exists(ADMIN_FILE):
-        save_json(ADMIN_FILE, {
+    if not GCS_BUCKET:
+        os.makedirs(IMAGE_DIR, exist_ok=True)
+    if not data_exists("content.json"):
+        save_json("content.json", DEFAULT_CONTENT)
+    if not data_exists("admin.json"):
+        save_json("admin.json", {
             "username": DEFAULT_ADMIN_USER,
             "password_hash": generate_password_hash(DEFAULT_ADMIN_PASSWORD),
         })
 
 
 def load_content():
-    return merge_defaults(DEFAULT_CONTENT, load_json(CONTENT_FILE))
+    return merge_defaults(DEFAULT_CONTENT, load_json("content.json"))
 
 
 def save_image_upload(file_storage):
     ext = os.path.splitext(file_storage.filename)[1].lower().lstrip(".")
     if ext not in ALLOWED_IMAGE_EXT:
-        flash(f"Định dạng .{ext} không được hỗ trợ. Hãy dùng JPG, PNG, WEBP hoặc GIF.", "warning")
+        flash(f"Định dạng .{ext} không được hỗ trợ. Hãy dùng JPG, PNG, WEBP, GIF hoặc AVIF.", "warning")
         return None
     file_storage.stream.seek(0, os.SEEK_END)
     size = file_storage.stream.tell()
@@ -490,6 +512,9 @@ def save_image_upload(file_storage):
         flash(f"Ảnh {file_storage.filename} vượt quá 5 MB.", "warning")
         return None
     name = f"{uuid.uuid4().hex}.{ext}"
+    if GCS_BUCKET:
+        gcs().blob(f"images/{name}").upload_from_file(file_storage.stream, content_type=file_storage.mimetype)
+        return f"https://storage.googleapis.com/{GCS_BUCKET}/images/{name}"
     file_storage.save(os.path.join(IMAGE_DIR, name))
     return f"/media/{name}"
 
@@ -613,7 +638,7 @@ def media(filename):
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
-        admin = load_json(ADMIN_FILE)
+        admin = load_json("admin.json")
         username = request.form.get("username", "").strip()
         password = request.form.get("password", "")
         if username == admin["username"] and check_password_hash(admin["password_hash"], password):
@@ -649,7 +674,7 @@ def admin_page(page_key):
                 content[page_key][section["id"]] = parse_list(section)
             else:
                 content[page_key][section["id"]] = parse_scalar(section, content[page_key][section["id"]])
-        save_json(CONTENT_FILE, content)
+        save_json("content.json", content)
         flash("Đã lưu nội dung thành công.", "success")
         return redirect(url_for("admin_page", page_key=page_key))
     return render_template("admin/page.html", page=page, data=content[page_key], pages=PAGES)
