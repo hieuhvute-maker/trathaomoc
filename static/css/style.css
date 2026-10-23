@@ -86,7 +86,8 @@ body {
 
 /* ===== Navbar ===== */
 .navbar-organic {
-    background: rgba(251, 247, 238, 0.92);
+    z-index: 1050;
+    background: rgba(251, 247, 238, 0.98);
     backdrop-filter: blur(10px);
     padding: 0.9rem 0;
     transition: all 0.35s ease;
@@ -197,6 +198,8 @@ body {
 }
 
 .hero-section {
+    z-index: 0;
+    isolation: isolate;
     min-height: 100vh;
     background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
     background-attachment: fixed;
