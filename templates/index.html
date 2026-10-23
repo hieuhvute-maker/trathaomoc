@@ -5,13 +5,9 @@
 <section class="hero-section d-flex align-items-center position-relative" style="background-image: url('{{ h.image }}');">
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-        <p class="eyebrow mb-3">{{ h.eyebrow }}</p>
-        <h1 class="display-3 font-serif text-white mb-4">{{ c.site.general.slogan }}</h1>
-        <p class="hero-lead mb-4">{{ h.lead }}</p>
-        <div class="d-flex flex-wrap gap-3">
-            <a href="{{ url_for('ingredients') }}" class="btn btn-gold rounded-pill px-4 py-2">{{ h.btn1 }}</a>
-            <a href="{{ url_for('about') }}" class="btn btn-outline-organic rounded-pill px-4 py-2">{{ h.btn2 }}</a>
-        </div>
+        <p class="eyebrow mb-3"{{ sa(h, 'eyebrow') }}>{{ h.eyebrow }}</p>
+        <h1 class="display-3 font-serif text-white mb-4"{{ sa(c.site.general, 'slogan') }}>{{ c.site.general.slogan }}</h1>
+        <p class="hero-lead mb-4"{{ sa(h, 'lead') }}>{{ h.lead }}</p>
     </div>
 </section>
 
@@ -20,11 +16,11 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <p class="eyebrow">{{ s.eyebrow }}</p>
-                <h2 class="section-title font-serif mb-4">{{ s.title }}</h2>
-                <p class="text-muted">{{ s.p1 }}</p>
-                <p class="text-muted">{{ s.p2 }}</p>
-                <blockquote class="brand-quote my-4">{{ s.quote }}</blockquote>
+                <p class="eyebrow"{{ sa(s, 'eyebrow') }}>{{ s.eyebrow }}</p>
+                                <h2 class="section-title font-serif mb-4"{{ sa(s, 'title') }}>{{ s.title }}</h2>
+                                <p class="text-muted"{{ sa(s, 'p1') }}>{{ s.p1 }}</p>
+                                <p class="text-muted"{{ sa(s, 'p2') }}>{{ s.p2 }}</p>
+                                <blockquote class="brand-quote my-4"{{ sa(s, 'quote') }}>{{ s.quote }}</blockquote>
                 <a href="{{ url_for('about') }}" class="link-organic">{{ s.link_text }} <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="col-lg-6">
@@ -43,16 +39,16 @@
 <section class="py-6 bg-organic-soft">
     <div class="container">
         <div class="text-center mb-5">
-            <p class="eyebrow">{{ c.home['values'].eyebrow }}</p>
-            <h2 class="section-title font-serif">{{ c.home['values'].title }}</h2>
+            <p class="eyebrow"{{ sa(c.home['values'], 'eyebrow') }}>{{ c.home['values'].eyebrow }}</p>
+                        <h2 class="section-title font-serif"{{ sa(c.home['values'], 'title') }}>{{ c.home['values'].title }}</h2>
         </div>
         <div class="row g-4">
             {% for v in c.home.value_items %}
             <div class="col-md-6 col-lg-3">
                 <div class="value-card h-100 p-4 shadow-soft">
                     <div class="icon-circle mb-3"><i class="bi {{ v.icon }}"></i></div>
-                    <h3 class="h5 font-serif">{{ v.title }}</h3>
-                    <p class="text-muted small mb-0">{{ v.desc }}</p>
+                    <h3 class="h5 font-serif"{{ sa(v, 'title') }}>{{ v.title }}</h3>
+                                        <p class="text-muted small mb-0"{{ sa(v, 'desc') }}>{{ v.desc }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -78,8 +74,8 @@
 <section class="py-6 bg-organic-soft">
     <div class="container">
         <div class="text-center mb-5">
-            <p class="eyebrow">{{ c.home.featured.eyebrow }}</p>
-            <h2 class="section-title font-serif">{{ c.home.featured.title }}</h2>
+            <p class="eyebrow"{{ sa(c.home.featured, 'eyebrow') }}>{{ c.home.featured.eyebrow }}</p>
+                        <h2 class="section-title font-serif"{{ sa(c.home.featured, 'title') }}>{{ c.home.featured.title }}</h2>
         </div>
         <div class="row g-4">
             {% for it in c.ingredients['items'][:3] %}
@@ -105,8 +101,8 @@
 
 <section class="cta-section text-center text-white">
     <div class="container position-relative">
-        <h2 class="font-serif display-5 mb-3">{{ c.home.cta.title }}</h2>
-        <p class="mb-4 mx-auto" style="max-width: 640px;">{{ c.home.cta.desc }}</p>
+        <h2 class="font-serif display-5 mb-3"{{ sa(c.home.cta, 'title') }}>{{ c.home.cta.title }}</h2>
+                <div class="mx-auto" style="max-width: 640px;"><p class="mb-4"{{ sa(c.home.cta, 'desc') }}>{{ c.home.cta.desc }}</p></div>
         <a href="{{ url_for('contact') }}" class="btn btn-gold rounded-pill px-5 py-2">{{ c.home.cta.button }}</a>
     </div>
 </section>

@@ -5,9 +5,9 @@
 <section class="page-hero text-white" style="background-image: url('{{ h.image }}');">
     <div class="hero-overlay"></div>
     <div class="container position-relative">
-        <p class="eyebrow">{{ h.eyebrow }}</p>
-        <h1 class="display-4 font-serif">{{ h.title }}</h1>
-        <p class="lead">{{ h.lead }}</p>
+        <p class="eyebrow"{{ sa(h, 'eyebrow') }}>{{ h.eyebrow }}</p>
+                <h1 class="display-4 font-serif"{{ sa(h, 'title') }}>{{ h.title }}</h1>
+                <p class="lead"{{ sa(h, 'lead') }}>{{ h.lead }}</p>
     </div>
 </section>
 
@@ -25,7 +25,7 @@
                         </button>
                     </div>
                     <div class="p-3">
-                        <h3 class="h6 font-serif mb-1">{{ it.title }}</h3>
+                        <h3 class="h6 font-serif mb-1"{{ sa(it, 'title') }}>{{ it.title }}</h3>
                         <small class="text-muted d-block">{{ it.issuer }}</small>
                         <small class="text-gold">{{ it.year }}</small>
                     </div>
@@ -39,8 +39,8 @@
 <section class="py-6 bg-organic-soft">
     <div class="container" style="max-width: 860px;">
         <div class="text-center mb-5">
-            <p class="eyebrow">{{ c.certificates.faq.eyebrow }}</p>
-            <h2 class="section-title font-serif">{{ c.certificates.faq.title }}</h2>
+            <p class="eyebrow"{{ sa(c.certificates.faq, 'eyebrow') }}>{{ c.certificates.faq.eyebrow }}</p>
+                        <h2 class="section-title font-serif"{{ sa(c.certificates.faq, 'title') }}>{{ c.certificates.faq.title }}</h2>
         </div>
         <div class="accordion accordion-organic" id="faqAccordion">
             {% for f in c.certificates.faq_items %}

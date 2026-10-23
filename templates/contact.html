@@ -5,9 +5,9 @@
 <section class="page-hero text-white" style="background-image: url('{{ h.image }}');">
     <div class="hero-overlay"></div>
     <div class="container position-relative">
-        <p class="eyebrow">{{ h.eyebrow }}</p>
-        <h1 class="display-4 font-serif">{{ h.title }}</h1>
-        <p class="lead">{{ h.lead }}</p>
+        <p class="eyebrow"{{ sa(h, 'eyebrow') }}>{{ h.eyebrow }}</p>
+                <h1 class="display-4 font-serif"{{ sa(h, 'title') }}>{{ h.title }}</h1>
+                <p class="lead"{{ sa(h, 'lead') }}>{{ h.lead }}</p>
     </div>
 </section>
 

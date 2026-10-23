@@ -1,6 +1,7 @@
 import copy
 import json
 import os
+import re
 import uuid
 from functools import wraps
 
@@ -8,6 +9,7 @@ from flask import (
     Flask, abort, flash, redirect, render_template, request,
     send_from_directory, session, url_for,
 )
+from markupsafe import Markup
 from werkzeug.security import check_password_hash, generate_password_hash
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -36,6 +38,17 @@ HINT_CARD = "800 × 600 px (tỉ lệ 4:3). Thẻ hiển thị cắt còn cao 24
 HINT_CERT = "900 × 1125 px (tỉ lệ 4:5). Ảnh dọc, giống giấy chứng nhận."
 HINT_GALLERY = "1200 × 1200 px (vuông 1:1)."
 HINT_MAP = "1600 × 600 px (tỉ lệ ~8:3). Ảnh nền phía sau khối địa chỉ."
+
+# Font chính thức của Google Fonts có hỗ trợ tiếng Việt.
+SERIF_FONTS = {"Playfair Display", "Lora", "Merriweather", "Noto Serif"}
+FONT_OPTIONS = [
+    "Be Vietnam Pro", "Montserrat", "Nunito", "Noto Sans", "Open Sans", "Roboto", "Quicksand",
+    "Playfair Display", "Lora", "Merriweather", "Noto Serif",
+]
+# Các font đã được tải sẵn trong base.html.
+DEFAULT_FONTS = {"Be Vietnam Pro", "Playfair Display"}
+STYLED_TYPES = {"text", "textarea", "lines"}
+COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 
 
 def txt(name, label):
@@ -478,9 +491,12 @@ def load_json(name):
 
 
 def merge_defaults(default, data):
-    """Bổ sung các khóa còn thiếu trong file JSON bằng giá trị mặc định."""
+    """Bổ sung các khóa còn thiếu trong file JSON bằng giá trị mặc định (giữ cả khóa phụ như font/màu)."""
     if isinstance(default, dict) and isinstance(data, dict):
-        return {k: merge_defaults(v, data[k]) if k in data else copy.deepcopy(v) for k, v in default.items()}
+        merged = {k: merge_defaults(v, data[k]) if k in data else copy.deepcopy(v) for k, v in default.items()}
+        for k, v in data.items():
+            merged.setdefault(k, v)
+        return merged
     return data if data is not None else copy.deepcopy(default)
 
 
@@ -537,11 +553,25 @@ def parse_field(field, key, current):
     return raw.strip()
 
 
+def parse_style(field, key, target):
+    """Lưu font và màu chữ của một trường vào khóa phụ `tên__font` / `tên__color`."""
+    if field["type"] not in STYLED_TYPES:
+        return
+    name = field["name"]
+    font = request.form.get(key + "|font", "")
+    target[f"{name}__font"] = font if font in FONT_OPTIONS else ""
+    color = request.form.get(key + "|color", "")
+    if request.form.get(key + "|color_reset") or not COLOR_RE.match(color):
+        color = ""
+    target[f"{name}__color"] = color
+
+
 def parse_scalar(section, current):
     result = dict(current)
     for field in section["fields"]:
         key = f"{section['id']}|{field['name']}"
         result[field["name"]] = parse_field(field, key, current.get(field["name"]))
+        parse_style(field, key, result)
     return result
 
 
@@ -559,9 +589,44 @@ def parse_list(section):
         for field in section["fields"]:
             key = f"{section['id']}|{row_id}|{field['name']}"
             item[field["name"]] = parse_field(field, key, "")
-        if any(item.values()):
+            parse_style(field, key, item)
+        if any(item[field["name"]] for field in section["fields"]):
             items.append(item)
     return items
+
+
+def style_attr(data, name):
+    """Trả về thuộc tính style inline (font, màu) cho một trường nội dung trong template."""
+    if not isinstance(data, dict):
+        return ""
+    parts = []
+    font = data.get(f"{name}__font")
+    if font in FONT_OPTIONS:
+        fallback = "serif" if font in SERIF_FONTS else "sans-serif"
+        parts.append(f"font-family: '{font}', {fallback}")
+    color = data.get(f"{name}__color") or ""
+    if COLOR_RE.match(color):
+        parts.append(f"color: {color}")
+    if not parts:
+        return ""
+    css = "; ".join(parts)
+    return Markup(f' style="{css}"')
+
+
+app.jinja_env.globals.update(sa=style_attr, font_options=FONT_OPTIONS)
+
+
+def collect_fonts(node, found):
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key.endswith("__font") and value in FONT_OPTIONS:
+                found.add(value)
+            else:
+                collect_fonts(value, found)
+    elif isinstance(node, list):
+        for value in node:
+            collect_fonts(value, found)
+    return found
 
 
 def login_required(view):
@@ -583,11 +648,13 @@ def find_page(key):
 @app.context_processor
 def inject_globals():
     content = load_content()
+    used_fonts = collect_fonts(content, set())
     return {
         "c": content,
         "brand": content["site"]["general"]["brand"],
         "contact": content["site"]["contact"],
         "current_year": 2026,
+        "extra_font_families": sorted(used_fonts - DEFAULT_FONTS),
     }
 
 

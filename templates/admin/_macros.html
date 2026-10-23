@@ -1,4 +1,4 @@
-{% macro render_field(f, key, value) -%}
+{% macro render_field(f, key, value, sdata) -%}
 <div class="mb-3">
     <label class="form-label fw-semibold">{{ f.label }}</label>
     {% if f.type == 'text' %}
@@ -24,12 +24,31 @@
             </div>
         </div>
     {% endif %}
+    {% if f.type in ['text', 'textarea', 'lines'] %}
+        <div class="row g-2 mt-1 align-items-center">
+            <div class="col-md-7">
+                <select class="form-select form-select-sm" name="{{ key }}|font" title="Font chữ">
+                    <option value="">Font mặc định của trang</option>
+                    {% for fn in font_options %}
+                    <option value="{{ fn }}" {% if sdata[f.name ~ '__font'] == fn %}selected{% endif %}>{{ fn }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-5 d-flex align-items-center gap-2">
+                <input type="color" class="form-control form-control-color form-control-sm" name="{{ key }}|color" value="{{ sdata[f.name ~ '__color'] or '#2f4f3a' }}" title="Màu chữ">
+                <label class="small text-nowrap">
+                    <input class="form-check-input me-1" type="checkbox" name="{{ key }}|color_reset" value="1" {% if not sdata[f.name ~ '__color'] %}checked{% endif %}>Màu mặc định
+                </label>
+            </div>
+        </div>
+        <div class="form-text">Bỏ tick "Màu mặc định" để dùng màu đã chọn.</div>
+    {% endif %}
 </div>
 {%- endmacro %}
 
 {% macro render_fields(fields, prefix, data) -%}
     {% for f in fields %}
-        {{ render_field(f, prefix ~ f.name, data[f.name]) }}
+        {{ render_field(f, prefix ~ f.name, data[f.name], data) }}
     {% endfor %}
 {%- endmacro %}
 

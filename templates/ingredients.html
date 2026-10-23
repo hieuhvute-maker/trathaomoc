@@ -5,9 +5,9 @@
 <section class="page-hero text-white" style="background-image: url('{{ h.image }}');">
     <div class="hero-overlay"></div>
     <div class="container position-relative">
-        <p class="eyebrow">{{ h.eyebrow }}</p>
-        <h1 class="display-4 font-serif">{{ h.title }}</h1>
-        <p class="lead">{{ h.lead }}</p>
+        <p class="eyebrow"{{ sa(h, 'eyebrow') }}>{{ h.eyebrow }}</p>
+                <h1 class="display-4 font-serif"{{ sa(h, 'title') }}>{{ h.title }}</h1>
+                <p class="lead"{{ sa(h, 'lead') }}>{{ h.lead }}</p>
     </div>
 </section>
 
@@ -21,10 +21,10 @@
                         <img src="{{ it.image }}" class="card-img-top" alt="{{ it.name }}">
                     </div>
                     <div class="card-body p-4">
-                        <h3 class="h4 card-title font-serif">{{ it.name }}</h3>
-                        <p class="latin-tag mb-1">{{ it.latin }}</p>
-                        <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i>{{ it.origin }}</p>
-                        <p class="text-muted small">{{ it.desc }}</p>
+                        <h3 class="h4 card-title font-serif"{{ sa(it, 'name') }}>{{ it.name }}</h3>
+                                                <p class="latin-tag mb-1"{{ sa(it, 'latin') }}>{{ it.latin }}</p>
+                                                <p class="small text-muted mb-3"><i class="bi bi-geo-alt me-1"></i><span{{ sa(it, 'origin') }}>{{ it.origin }}</span></p>
+                                                <p class="text-muted small"{{ sa(it, 'desc') }}>{{ it.desc }}</p>
                         <ul class="benefit-list list-unstyled small">
                             {% for b in it.benefits %}
                             <li><i class="bi bi-check2-circle me-1"></i>{{ b }}</li>
@@ -38,8 +38,8 @@
         </div>
 
         <div class="alert alert-light border rounded-4 mt-6">
-            <h3 class="h6 font-serif text-gold">{{ c.ingredients.notice.title }}</h3>
-            <p class="small text-muted mb-0">{{ c.ingredients.notice.text }}</p>
+            <h3 class="h6 font-serif text-gold"{{ sa(c.ingredients.notice, 'title') }}>{{ c.ingredients.notice.title }}</h3>
+                        <p class="small text-muted mb-0"{{ sa(c.ingredients.notice, 'text') }}>{{ c.ingredients.notice.text }}</p>
         </div>
     </div>
 </section>
