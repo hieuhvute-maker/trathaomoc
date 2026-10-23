@@ -1,0 +1,26 @@
+steps:
+  - name: gcr.io/k8s-skaffold/pack
+    args:
+      - pack
+      - build
+      - gcr.io/project-cd6c2c39-a51c-4c39-b53/github.com/hieuhvute-maker/trathaomoc:$COMMIT_SHA
+      - --builder
+      - gcr.io/buildpacks/builder
+      - --publish
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - hieuclound
+      - --image
+      - gcr.io/project-cd6c2c39-a51c-4c39-b53/github.com/hieuhvute-maker/trathaomoc:$COMMIT_SHA
+      - --region
+      - asia-east1
+      - --platform
+      - managed
+      - --quiet
+images:
+  - gcr.io/project-cd6c2c39-a51c-4c39-b53/github.com/hieuhvute-maker/trathaomoc:$COMMIT_SHA
+options:
+  logging: CLOUD_LOGGING_ONLY
